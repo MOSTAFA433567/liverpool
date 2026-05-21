@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Gamepad2, CalendarDays, ShoppingCart,
   BarChart3, Settings, LogOut, User, Users, Zap, Globe,
@@ -15,7 +15,6 @@ import { Logo } from '../ui/Logo';
 
 export function Layout() {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   const { user, logout } = useAuthStore();
   const { lang, toggleLang } = useLanguageStore();
   const tr = useTranslation(lang);

@@ -58,7 +58,7 @@ export async function loginWithEmail(email: string, pass: string) {
   return mockUser;
 }
 
-export async function registerWithEmail(email: string, pass: string, name: string) {
+export async function registerWithEmail(email: string, _pass: string, name: string) {
   const mockUser: User = {
     id: 'new-mock-' + Date.now(),
     email: email,
