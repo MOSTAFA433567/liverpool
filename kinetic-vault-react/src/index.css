@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+@theme {
+  --color-background:         #0a0514;
+  --color-surface:            #120924;
+  --color-surface-highlight:  #1d0e38;
+  --color-primary:            #00f0ff;
+  --color-primary-container:  #00e5ff;
+  --color-secondary:          #ff0055;
+  --color-secondary-container:#cc0044;
+  --color-accent:             #ff00cc;
+  --color-success:            #00ffaa;
+  --color-error:              #ff3366;
+  --color-error-container:    #990033;
+  --color-muted:              #8a7b9e;
+
+  --font-headline: "Space Grotesk", "Cairo", sans-serif;
+  --font-body:     "Inter", "Cairo", sans-serif;
+
+  --animate-glow-pulse: glow-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.5; }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-gray-100 font-body antialiased selection:bg-primary-container selection:text-surface;
+  }
+
+  /* Arabic font override */
+  :lang(ar) body,
+  [dir="rtl"] {
+    font-family: "Cairo", "Space Grotesk", sans-serif;
+  }
+
+  /* RTL scrollbar positioning */
+  [dir="rtl"] .scrollbar-hide::-webkit-scrollbar { display: none; }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-surface/60 backdrop-blur-xl border border-white/5;
+  }
+  .glow-text {
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.8), 0 0 24px rgba(0, 240, 255, 0.4);
+  }
+  .glow-box {
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(255, 0, 85, 0.1);
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Logical property shorthands for RTL */
+  .border-s-4  { border-inline-start-width: 4px; }
+  .border-s-primary-container { border-inline-start-color: var(--color-primary-container); }
+  .border-s-secondary         { border-inline-start-color: var(--color-secondary); }
+  .border-s-accent            { border-inline-start-color: var(--color-accent); }
+}

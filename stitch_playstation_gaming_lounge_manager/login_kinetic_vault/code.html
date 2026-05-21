@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KINETIC VAULT - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#1f1f22",
+                        "secondary-container": "#573397",
+                        "surface-container-highest": "#353438",
+                        "on-tertiary-fixed-variant": "#624000",
+                        "surface-variant": "#353438",
+                        "surface-tint": "#4cd6ff",
+                        "outline-variant": "#3c494e",
+                        "on-primary-fixed": "#001f28",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e4e1e6",
+                        "on-secondary-fixed": "#260059",
+                        "secondary": "#d3bbff",
+                        "on-tertiary": "#442b00",
+                        "surface": "#131316",
+                        "surface-container-high": "#2a2a2d",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#ebddff",
+                        "on-primary": "#003543",
+                        "inverse-primary": "#00677f",
+                        "surface-container-low": "#1b1b1e",
+                        "on-surface-variant": "#bbc9cf",
+                        "on-primary-container": "#00566a",
+                        "primary-fixed": "#b7eaff",
+                        "on-secondary-fixed-variant": "#553195",
+                        "on-surface": "#e4e1e6",
+                        "secondary-fixed-dim": "#d3bbff",
+                        "primary-fixed-dim": "#4cd6ff",
+                        "on-background": "#e4e1e6",
+                        "on-tertiary-container": "#6b4700",
+                        "tertiary-fixed-dim": "#ffba49",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#3d147d",
+                        "background": "#131316",
+                        "outline": "#859399",
+                        "tertiary": "#ffd59c",
+                        "on-tertiary-fixed": "#291800",
+                        "on-primary-fixed-variant": "#004e60",
+                        "surface-bright": "#39393c",
+                        "on-secondary-container": "#c7aaff",
+                        "surface-container-lowest": "#0e0e11",
+                        "primary": "#a4e6ff",
+                        "tertiary-fixed": "#ffddb1",
+                        "primary-container": "#00d1ff",
+                        "inverse-on-surface": "#303033",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#feb127",
+                        "surface-dim": "#131316"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #131316;
+            color: #e4e1e6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .bg-kinetic-pattern {
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(164, 230, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(87, 51, 151, 0.1) 0%, rgba(19, 19, 22, 1) 100%);
+            background-size: 100% 100%;
+        }
+        .glow-effect {
+            box-shadow: 0 0 40px 10px rgba(164, 230, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-surface relative overflow-hidden bg-kinetic-pattern">
+<!-- Atmospheric Glow Orbs -->
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[150px] -z-10"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[200px] -z-10"></div>
+<main class="w-full max-w-md px-6 relative z-10">
+<!-- Glassmorphic Login Card -->
+<div class="bg-surface-container-low/60 backdrop-blur-xl rounded-xl p-8 relative shadow-2xl overflow-hidden border-t border-white/10 glow-effect">
+<!-- Asymmetric Loading Line (HUD element) -->
+<div class="absolute top-0 left-0 h-[2px] w-[15%] bg-primary"></div>
+<!-- Header -->
+<div class="mb-10 text-center">
+<h1 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-primary-container tracking-tighter mb-2">
+                    KINETIC VAULT
+                </h1>
+<p class="text-on-surface-variant text-sm font-label tracking-widest uppercase opacity-80">
+                    System Authorization
+                </p>
+</div>
+<!-- Form -->
+<form class="space-y-6">
+<!-- Username / Email Input -->
+<div class="space-y-2">
+<label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant" for="username">Operator ID</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-sm" style="font-variation-settings: 'FILL' 1;">person</span>
+</span>
+<input autocomplete="username" class="block w-full pl-10 pr-3 py-3 bg-surface-container-lowest border border-outline-variant/15 rounded-md text-on-surface text-sm focus:border-primary/50 focus:ring-0 focus:shadow-[inset_0_0_8px_rgba(164,230,255,0.2)] transition-all outline-none" id="username" name="username" placeholder="Enter credentials" type="text"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-2">
+<div class="flex justify-between items-baseline">
+<label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant" for="password">Access Code</label>
+<a class="text-xs text-primary hover:text-primary-container transition-colors" href="#">Forgot code?</a>
+</div>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-sm" style="font-variation-settings: 'FILL' 1;">lock</span>
+</span>
+<input autocomplete="current-password" class="block w-full pl-10 pr-3 py-3 bg-surface-container-lowest border border-outline-variant/15 rounded-md text-on-surface text-sm focus:border-primary/50 focus:ring-0 focus:shadow-[inset_0_0_8px_rgba(164,230,255,0.2)] transition-all outline-none" id="password" name="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full py-3 px-4 mt-8 bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed font-headline font-semibold rounded-md shadow-[0_0_20px_rgba(164,230,255,0.1)] hover:shadow-[0_0_30px_rgba(164,230,255,0.3)] hover:scale-[1.02] transition-all duration-300 flex justify-center items-center gap-2" type="button">
+                    INITIALIZE LOGIN
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">login</span>
+</button>
+</form>
+<!-- Footer Links -->
+<div class="mt-8 pt-6 border-t border-outline-variant/15 text-center">
+<p class="text-sm text-on-surface-variant">
+                    No active clearance? 
+                    <a class="text-primary hover:text-primary-container font-medium ml-1 transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300" href="#">
+                        Request Access
+                    </a>
+</p>
+</div>
+</div>
+<!-- Bottom Status Pip -->
+<div class="mt-8 flex justify-center items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_#00d1ff]"></div>
+<span class="text-xs font-label uppercase tracking-widest text-on-surface-variant">System Online</span>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Config | KINETIC VAULT</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#1f1f22",
+                        "secondary-container": "#573397",
+                        "surface-container-highest": "#353438",
+                        "on-tertiary-fixed-variant": "#624000",
+                        "surface-variant": "#353438",
+                        "surface-tint": "#4cd6ff",
+                        "outline-variant": "#3c494e",
+                        "on-primary-fixed": "#001f28",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e4e1e6",
+                        "on-secondary-fixed": "#260059",
+                        "secondary": "#d3bbff",
+                        "on-tertiary": "#442b00",
+                        "surface": "#131316",
+                        "surface-container-high": "#2a2a2d",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#ebddff",
+                        "on-primary": "#003543",
+                        "inverse-primary": "#00677f",
+                        "surface-container-low": "#1b1b1e",
+                        "on-surface-variant": "#bbc9cf",
+                        "on-primary-container": "#00566a",
+                        "primary-fixed": "#b7eaff",
+                        "on-secondary-fixed-variant": "#553195",
+                        "on-surface": "#e4e1e6",
+                        "secondary-fixed-dim": "#d3bbff",
+                        "primary-fixed-dim": "#4cd6ff",
+                        "on-background": "#e4e1e6",
+                        "on-tertiary-container": "#6b4700",
+                        "tertiary-fixed-dim": "#ffba49",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#3d147d",
+                        "background": "#131316",
+                        "outline": "#859399",
+                        "tertiary": "#ffd59c",
+                        "on-tertiary-fixed": "#291800",
+                        "on-primary-fixed-variant": "#004e60",
+                        "surface-bright": "#39393c",
+                        "on-secondary-container": "#c7aaff",
+                        "surface-container-lowest": "#0e0e11",
+                        "primary": "#a4e6ff",
+                        "tertiary-fixed": "#ffddb1",
+                        "primary-container": "#00d1ff",
+                        "inverse-on-surface": "#303033",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#feb127",
+                        "surface-dim": "#131316"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.surface'); color: theme('colors.on-surface'); }
+        .glass-panel {
+            background-color: rgba(27, 27, 30, 0.6); /* surface-container-low */
+            backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .ambient-glow {
+            box-shadow: 0 0 40px 10px rgba(164, 230, 255, 0.05); /* primary */
+        }
+        .primary-gradient-text {
+            background: linear-gradient(135deg, theme('colors.primary'), theme('colors.primary-container'));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="font-body antialiased min-h-screen flex overflow-hidden">
+<!-- Ambient Background Orb -->
+<div class="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden">
+<div class="w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[200px] absolute top-1/4 right-1/4"></div>
+</div>
+<!-- Shared Component: SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 top-0 z-40 bg-[#0e0e11]/90 backdrop-blur-2xl border-r border-[#3c494e]/15 shadow-2xl shadow-black flex flex-col h-full py-6 font-['Inter'] text-sm tracking-tight text-[#859399]">
+<!-- Header -->
+<div class="px-6 mb-10 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/30 shrink-0">
+<img alt="System Operator" class="w-full h-full object-cover" data-alt="Abstract geometric avatar icon in neon blue on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOEfxeLIowBhF_8A_Enho7lE7wOy5aLXlqCVH8opdWH-2MKy5uApI_49haG4u50kuMyKUQPtidvw-s6qwc8iL3h_B8TIg7_q_WRB-my57p_nY4Xyyd0PbU1kOYCBMylDyqmpprAgIVmYucdHOOw5sFIfaOEyhsCCCCRgD4jTErHeCc2f8j35UT_TujG8OmV5AgcVBp9dN0nVA6Oai_0e3fS5J-_UN1Oh-737YAhq9FHeA6tBjPQmHTZmExrGgqk56Ox1vswZ399OA"/>
+</div>
+<div>
+<h2 class="font-['Space_Grotesk'] font-bold text-white tracking-tight">OPERATOR_01</h2>
+<p class="text-xs text-[#859399]">Level 4 Clearance</p>
+</div>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 overflow-y-auto px-4 space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-[#1b1b1e] hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">grid_view</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-[#1b1b1e] hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">sports_esports</span>
+<span>Game Library</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-[#1b1b1e] hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">group</span>
+<span>User Matrix</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-[#1b1b1e] hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">lock</span>
+<span>Vault Access</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-[#1b1b1e] hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">analytics</span>
+<span>Analytics</span>
+</a>
+<!-- ACTIVE TAB -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#00D1FF] font-bold bg-[#1f1f22] relative before:absolute before:left-0 before:h-full before:w-1 before:bg-[#00D1FF] before:shadow-[0_0_10px_#00D1FF] Active: translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span>System Config</span>
+</a>
+</div>
+<!-- Footer Navigation -->
+<div class="px-4 mt-auto space-y-2 pt-6 border-t border-[#3c494e]/15">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-[#1b1b1e] hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">history</span>
+<span>Security Log</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-[#1b1b1e] hover:text-[#ffb4ab] transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 h-screen overflow-y-auto relative z-10 scrollbar-hide">
+<!-- HUD Header -->
+<header class="sticky top-0 z-30 bg-surface/80 backdrop-blur-md pt-8 pb-4 px-12">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-headline text-primary tracking-widest text-xs uppercase mb-1 font-bold">Configuration Matrix</p>
+<h1 class="font-headline text-4xl font-bold tracking-tight text-white">System Config</h1>
+</div>
+<div class="flex gap-4">
+<button class="bg-surface-container-lowest border border-outline-variant/20 px-4 py-2 rounded-md text-on-surface-variant hover:text-white hover:bg-surface-container-low transition-all flex items-center gap-2 text-sm font-medium">
+<span class="material-symbols-outlined text-sm">refresh</span>
+                        Sync Nodes
+                    </button>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-6 py-2 rounded-md font-bold text-sm shadow-[0_0_15px_rgba(0,209,255,0.2)] hover:scale-[1.02] transition-transform">
+                        Commit Changes
+                    </button>
+</div>
+</div>
+<!-- Asymmetric HUD Line -->
+<div class="w-full h-[1px] bg-surface-container-highest mt-6 relative">
+<div class="absolute left-0 top-0 h-[2px] w-[15%] bg-primary"></div>
+</div>
+</header>
+<div class="px-12 py-8 max-w-7xl mx-auto space-y-12">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Left Column: Global Toggles (Narrower) -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Global Preferences Card -->
+<section class="glass-panel rounded-xl p-8 ambient-glow relative overflow-hidden group hover:bg-surface-container-high transition-colors duration-300">
+<!-- Decorative glow -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors"></div>
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary">tune</span>
+<h2 class="font-headline text-xl font-bold text-white tracking-tight">Global Prefs</h2>
+</div>
+<div class="space-y-6">
+<!-- Toggle: Dark Mode -->
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-medium text-white">Dark Mode</p>
+<p class="text-xs text-on-surface-variant mt-1">Force void aesthetic</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-lowest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)] border border-outline-variant/20"></div>
+</label>
+</div>
+<!-- Toggle: Notifications -->
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-medium text-white">System Alerts</p>
+<p class="text-xs text-on-surface-variant mt-1">Push notifications via HUD</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-lowest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)] border border-outline-variant/20"></div>
+</label>
+</div>
+<!-- Toggle: Auto-logout -->
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-medium text-white">Auto-Logout</p>
+<p class="text-xs text-on-surface-variant mt-1">Kill session after 15m idle</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-lowest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-variant after:border-outline-variant/50 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)] border border-outline-variant/20"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Security Quick Stats -->
+<section class="glass-panel rounded-xl p-8 relative overflow-hidden group hover:bg-surface-container-high transition-colors duration-300 border-l-2 border-l-tertiary-container">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline text-lg font-bold text-white tracking-tight">Security Status</h2>
+<span class="material-symbols-outlined text-tertiary-container" style="font-variation-settings: 'FILL' 1;">shield_lock</span>
+</div>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-3xl font-bold text-white font-headline">DEFCON 4</span>
+</div>
+<p class="text-xs text-on-surface-variant">Last audit: 24 mins ago. 3 minor anomalies detected in Zone B.</p>
+<button class="mt-4 text-xs font-bold text-primary uppercase tracking-widest hover:text-primary-container transition-colors flex items-center gap-1">
+                            Review Logs <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</section>
+</div>
+<!-- Right Column: Complex Data (Wider) -->
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<!-- Hardware Rates Matrix -->
+<section class="glass-panel rounded-xl p-8 ambient-glow relative overflow-hidden group hover:bg-surface-container-high transition-colors duration-300">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">payments</span>
+<h2 class="font-headline text-xl font-bold text-white tracking-tight">Hardware Tariffs</h2>
+</div>
+<span class="font-label text-[10px] tracking-[0.1em] text-on-surface-variant uppercase bg-surface-container-lowest px-2 py-1 rounded border border-outline-variant/20">Hourly Rates (USD)</span>
+</div>
+<div class="space-y-4">
+<!-- Rate Item: PS5 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-white">videogame_asset</span>
+</div>
+<div>
+<h3 class="font-bold text-white text-sm">PlayStation 5 Pro</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_4px_#00d1ff]"></div>
+<p class="text-xs text-on-surface-variant">Premium Tier</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">$</span>
+<input class="bg-surface-container text-white text-right text-sm font-bold rounded-md border border-outline-variant/20 focus:border-primary/50 focus:ring-0 py-2 pl-8 pr-4 w-24 shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)]" type="text" value="12.00"/>
+</div>
+</div>
+</div>
+<!-- Rate Item: PS4 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant">gamepad</span>
+</div>
+<div>
+<h3 class="font-bold text-white text-sm">PlayStation 4</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-1.5 h-1.5 rounded-full bg-[#1b1b1e] border border-outline-variant/50"></div>
+<p class="text-xs text-on-surface-variant">Standard Tier</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">$</span>
+<input class="bg-surface-container text-white text-right text-sm font-bold rounded-md border border-outline-variant/20 focus:border-primary/50 focus:ring-0 py-2 pl-8 pr-4 w-24 shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)]" type="text" value="8.00"/>
+</div>
+</div>
+</div>
+<!-- Rate Item: Billiards -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-lg border border-outline-variant/10 hover:border-primary/30 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-tertiary-container">sports_score</span>
+</div>
+<div>
+<h3 class="font-bold text-white text-sm">Billiards Table</h3>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary-container shadow-[0_0_4px_#feb127]"></div>
+<p class="text-xs text-on-surface-variant">Analog Tier</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">$</span>
+<input class="bg-surface-container text-white text-right text-sm font-bold rounded-md border border-outline-variant/20 focus:border-primary/50 focus:ring-0 py-2 pl-8 pr-4 w-24 shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)]" type="text" value="15.00"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</body></html>

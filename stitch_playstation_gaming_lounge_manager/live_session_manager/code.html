@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Active Session Controller</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#201f21",
+                        "primary": "#a4e6ff",
+                        "on-primary": "#003543",
+                        "inverse-on-surface": "#313032",
+                        "on-primary-fixed-variant": "#004e60",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#feb127",
+                        "primary-container": "#00d1ff",
+                        "on-tertiary": "#442b00",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#320047",
+                        "surface-dim": "#131315",
+                        "secondary-fixed-dim": "#ecb2ff",
+                        "on-tertiary-fixed-variant": "#624000",
+                        "surface-container-highest": "#353437",
+                        "on-tertiary-fixed": "#291800",
+                        "on-primary-container": "#00566a",
+                        "on-primary-fixed": "#001f28",
+                        "outline-variant": "#3c494e",
+                        "tertiary-fixed-dim": "#ffba49",
+                        "tertiary-fixed": "#ffddb1",
+                        "error": "#ffb4ab",
+                        "surface-container-high": "#2a2a2c",
+                        "on-surface": "#e5e1e4",
+                        "on-tertiary-container": "#6b4700",
+                        "surface": "#131315",
+                        "surface-container-lowest": "#0e0e10",
+                        "background": "#131315",
+                        "surface-container-low": "#1c1b1d",
+                        "on-secondary-fixed-variant": "#74009f",
+                        "on-secondary-container": "#480063",
+                        "on-background": "#e5e1e4",
+                        "secondary": "#ecb2ff",
+                        "inverse-primary": "#00677f",
+                        "secondary-fixed": "#f8d8ff",
+                        "surface-tint": "#4cd6ff",
+                        "primary-fixed": "#b7eaff",
+                        "secondary-container": "#cf5cff",
+                        "outline": "#859399",
+                        "on-surface-variant": "#bbc9cf",
+                        "tertiary": "#ffd59c",
+                        "surface-variant": "#353437",
+                        "on-error-container": "#ffdad6",
+                        "surface-bright": "#39393b",
+                        "primary-fixed-dim": "#4cd6ff",
+                        "on-secondary": "#520071",
+                        "inverse-surface": "#e5e1e4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glow-sm:hover { box-shadow: 0 0 8px rgba(0,209,255,0.6); }
+        .glow-heavy:hover { box-shadow: 0 0 20px rgba(0, 209, 255, 0.5); }
+        .glow-red:hover { box-shadow: 0 0 20px rgba(244, 67, 54, 0.5); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+        .bg-cyber-pattern { background-image: radial-gradient(circle at center, rgba(0,209,255,0.05) 0%, transparent 70%); }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body overflow-x-hidden min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 top-0 border-r border-cyan-500/10 bg-[#131315] dark:bg-[#131315] backdrop-blur-xl bg-opacity-80 flex flex-col py-8 z-50">
+<div class="px-8 mb-12">
+<h1 class="text-2xl font-black tracking-tighter text-[#00D1FF] drop-shadow-[0_0_8px_rgba(0,209,255,0.6)] font-headline">CYBER_CORE</h1>
+<p class="text-xs text-on-surface-variant font-label mt-1 uppercase tracking-wider">Lounge Manager</p>
+</div>
+<button class="mx-8 mb-8 bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-headline font-bold uppercase tracking-widest text-sm py-3 px-4 rounded hover:glow-heavy transition-all duration-300 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined fill text-lg">play_arrow</span>
+            START SESSION
+        </button>
+<div class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-white/5 transition-all duration-200 scale-95 active:scale-100 font-headline uppercase tracking-widest text-sm" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded text-[#00D1FF] border-r-2 border-[#00D1FF] bg-gradient-to-r from-cyan-500/10 to-transparent hover:bg-white/5 transition-all duration-200 scale-95 active:scale-100 font-headline uppercase tracking-widest text-sm" href="#">
+<span class="material-symbols-outlined">videogame_asset</span>
+<span>Stations</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-white/5 transition-all duration-200 scale-95 active:scale-100 font-headline uppercase tracking-widest text-sm" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Members</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-white/5 transition-all duration-200 scale-95 active:scale-100 font-headline uppercase tracking-widest text-sm" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span>Tournaments</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-white/5 transition-all duration-200 scale-95 active:scale-100 font-headline uppercase tracking-widest text-sm" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-white/5 transition-all duration-200 scale-95 active:scale-100 font-headline uppercase tracking-widest text-sm" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span>Analytics</span>
+</a>
+</div>
+<div class="mt-auto px-4 space-y-2 pt-8 border-t border-white/5">
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-white/5 transition-all duration-200 scale-95 active:scale-100 font-headline uppercase tracking-widest text-sm" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 hover:text-slate-300 hover:bg-white/5 transition-all duration-200 scale-95 active:scale-100 font-headline uppercase tracking-widest text-sm" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span>Support</span>
+</a>
+<div class="mt-4 px-4 flex items-center gap-3">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full border border-primary-container/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5Bs-_90s_DJsJyUWtyk3klJg_QTJMmlnTx7WMajjCjFEWxJG2ZBtK09z4uqbfuL4Ec5z3jiXrt_DOrbD-pMce7m9KwYkF-U1gGn9_MCs2Z3N25sSSykYt53iV9tzQkFjdyzM4lQzrXCM-XzfWMvGVjge8Pt3a4OH3RGN-_E9Vy_ZCLenw1-Hfy6T9Fcln8Vsjy3KNG01zGstyInjtJI0N5KYOFZlNc7khfMRxEQkcpGlK4c2Y-XkwdjUEiUpfdMPwS_2Iw87GwiA"/>
+<div>
+<p class="text-sm font-headline text-on-surface">SYS_ADMIN</p>
+<p class="text-xs text-on-surface-variant font-label">Online</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-[#131315]/60 backdrop-blur-md flex items-center justify-between px-8 w-full border-b border-white/5">
+<div class="flex items-center gap-6">
+<h2 class="text-xl font-bold text-slate-100 font-headline tracking-wide uppercase">KINETIC_ETHER</h2>
+<div class="h-6 w-px bg-white/10"></div>
+<div class="flex items-center gap-2 text-on-surface-variant bg-surface-container-low px-3 py-1.5 rounded-sm border border-outline-variant/15 focus-within:border-primary-container/50 focus-within:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm">search</span>
+<input class="bg-transparent border-none outline-none text-sm font-label w-64 placeholder:text-on-surface-variant/50 focus:ring-0" placeholder="Search sessions, members..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-400 hover:text-[#00D1FF] transition-colors hover:glow-sm cursor-pointer w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-400 hover:text-[#00D1FF] transition-colors hover:glow-sm cursor-pointer w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low">
+<span class="material-symbols-outlined">schedule</span>
+</button>
+<button class="text-slate-400 hover:text-[#00D1FF] transition-colors hover:glow-sm cursor-pointer w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-16 flex-1 bg-cyber-pattern min-h-screen relative overflow-hidden">
+<div class="p-12 max-w-7xl mx-auto grid grid-cols-12 gap-8 relative z-10">
+<!-- Header/Breadcrumb -->
+<div class="col-span-12 flex justify-between items-end mb-4">
+<div>
+<div class="flex items-center gap-2 text-primary font-headline text-sm tracking-widest uppercase mb-2">
+<span class="material-symbols-outlined text-sm">videogame_asset</span>
+<span>Stations</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface">Station Alpha-01</span>
+</div>
+<h2 class="text-4xl font-headline font-bold text-on-surface tracking-tight">SESSION CONTROLLER</h2>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-lowest px-4 py-2 rounded border border-outline-variant/20 shadow-[0_0_15px_rgba(0,209,255,0.05)]">
+<span class="w-2 h-2 rounded-full bg-[#4CAF50] shadow-[0_0_8px_rgba(76,175,80,0.6)]"></span>
+<span class="text-sm font-headline tracking-widest text-on-surface-variant uppercase">System Online</span>
+</div>
+</div>
+<!-- Left Column: Centerpiece Timer & Metrics -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-8">
+<!-- Huge Digital Timer -->
+<div class="bg-surface-container-low/50 backdrop-blur-md rounded-xl p-12 border border-primary-container/30 shadow-[0_0_40px_rgba(0,209,255,0.08)] flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-b from-primary-container/5 to-transparent opacity-50"></div>
+<p class="font-headline text-primary tracking-[0.2em] uppercase text-sm mb-6 relative z-10 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">timer</span>
+                        Time Remaining
+                    </p>
+<div class="text-8xl md:text-9xl font-headline font-black text-on-surface tracking-tighter tabular-nums drop-shadow-[0_0_12px_rgba(0,209,255,0.3)] relative z-10">
+                        01:42:<span class="text-primary-container">15</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full max-w-xl h-2 bg-surface-container-lowest mt-12 rounded-full overflow-hidden relative z-10">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container w-[65%] shadow-[0_0_10px_rgba(0,209,255,0.8)] relative">
+<div class="absolute right-0 top-0 bottom-0 w-4 bg-white/50 blur-[2px]"></div>
+</div>
+</div>
+<div class="w-full max-w-xl flex justify-between mt-2 text-xs font-label text-on-surface-variant relative z-10">
+<span>Started: 14:00</span>
+<span>Ends: 16:00</span>
+</div>
+</div>
+<!-- Metrics Bento Grid -->
+<div class="grid grid-cols-3 gap-6">
+<!-- Current Cost -->
+<div class="bg-surface-container-highest/40 backdrop-blur-xl rounded-lg p-6 border border-outline-variant/15 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-6">
+<p class="font-headline text-on-surface-variant text-xs uppercase tracking-widest">Current Cost</p>
+<span class="material-symbols-outlined text-tertiary-container">payments</span>
+</div>
+<div>
+<div class="text-4xl font-headline font-bold text-tertiary-container tabular-nums">$24.50</div>
+<p class="text-xs font-label text-on-surface-variant mt-2">Rate: $12.00 / hr</p>
+</div>
+</div>
+<!-- Room/Station -->
+<div class="bg-surface-container-highest/40 backdrop-blur-xl rounded-lg p-6 border border-outline-variant/15 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-6">
+<p class="font-headline text-on-surface-variant text-xs uppercase tracking-widest">Station ID</p>
+<span class="material-symbols-outlined text-secondary">dns</span>
+</div>
+<div>
+<div class="text-3xl font-headline font-bold text-on-surface tracking-tight">ALPHA-01</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4CAF50] shadow-[0_0_5px_rgba(76,175,80,0.6)]"></span>
+<p class="text-xs font-label text-[#4CAF50]">VIP Pod Connected</p>
+</div>
+</div>
+</div>
+<!-- Game Playing -->
+<div class="bg-surface-container-highest/40 backdrop-blur-xl rounded-lg p-6 border border-outline-variant/15 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=80')] bg-cover bg-center opacity-10 mix-blend-luminosity" data-alt="Dark abstract cyberpunk gaming background with neon purple and blue subtle lights"></div>
+<div class="flex justify-between items-start mb-6 relative z-10">
+<p class="font-headline text-on-surface-variant text-xs uppercase tracking-widest">Active Title</p>
+<span class="material-symbols-outlined text-primary-container">sports_esports</span>
+</div>
+<div class="relative z-10">
+<div class="text-xl font-headline font-bold text-on-surface leading-tight">Cyberpunk 2077</div>
+<p class="text-xs font-label text-primary mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">speed</span>
+                                144 FPS Avg
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Actions & Details -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<!-- Action Controls -->
+<div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/15 flex flex-col gap-4">
+<h3 class="font-headline text-on-surface tracking-widest text-sm uppercase mb-2">Session Directives</h3>
+<button class="w-full bg-surface-container-highest border border-outline-variant/30 hover:border-primary-container/50 text-on-surface py-4 rounded flex items-center justify-center gap-3 transition-all duration-200 hover:glow-sm group">
+<span class="material-symbols-outlined text-primary-container group-hover:scale-110 transition-transform">add_circle</span>
+<span class="font-headline font-bold tracking-wide">ADD 30 MINS</span>
+<span class="text-xs font-label text-on-surface-variant ml-auto mr-2">+$6.00</span>
+</button>
+<button class="w-full bg-surface-container-highest border border-outline-variant/30 hover:border-primary-container/50 text-on-surface py-4 rounded flex items-center justify-center gap-3 transition-all duration-200 hover:glow-sm group">
+<span class="material-symbols-outlined text-primary-container group-hover:scale-110 transition-transform">more_time</span>
+<span class="font-headline font-bold tracking-wide">ADD 1 HOUR</span>
+<span class="text-xs font-label text-on-surface-variant ml-auto mr-2">+$12.00</span>
+</button>
+<button class="w-full bg-surface-container-lowest border border-secondary/30 hover:border-secondary text-secondary py-4 rounded flex items-center justify-center gap-3 transition-all duration-200 hover:shadow-[0_0_15px_rgba(236,178,255,0.2)] group mt-2">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">local_bar</span>
+<span class="font-headline font-bold tracking-wide">ORDER DRINKS</span>
+</button>
+<div class="h-px w-full bg-white/5 my-2"></div>
+<button class="w-full bg-error-container/20 border border-error/50 text-error py-4 rounded flex items-center justify-center gap-3 transition-all duration-200 glow-red group hover:bg-error-container/40">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">power_settings_new</span>
+<span class="font-headline font-bold tracking-wide">FINISH SESSION</span>
+</button>
+</div>
+<!-- Session Details Glass Card -->
+<div class="bg-surface-container-highest/30 backdrop-blur-lg rounded-xl p-6 border border-outline-variant/15 flex-1">
+<h3 class="font-headline text-on-surface tracking-widest text-sm uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">info</span>
+                        Member Intel
+                    </h3>
+<div class="flex items-center gap-4 mb-8">
+<img alt="Player Avatar" class="w-14 h-14 rounded bg-surface-container-lowest border border-outline-variant/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-8QZ36Bky3Y5W9YDdijFmXqHa_eEgsdEn2FZ_u_g7BYp4w_1Y6gxOzVIcRstfJhg3-D1CWmq7ipmtGNh6Qiny8A-jtD9kLBSi-E0kuODpSUxdXtjmVUawNggVfOhQhOdbAKyDldL9qOcnL0F-9_3tBWm2EuMHXxLkEsSCO-F_GBo3LhRlqmoNpXhmI21G39OIZFipA76p0JxSo0mnD49holIc3pBFkKfRHLVX1eLobW7ad2iGTZrS5adCdYs2MQbKniDEvNI-xug"/>
+<div>
+<div class="text-lg font-headline font-bold text-on-surface">Jaxon "Void" R.</div>
+<div class="text-xs font-label text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary-container">star</span>
+                                Premium Member
+                            </div>
+</div>
+</div>
+<div class="space-y-6">
+<div>
+<p class="font-headline text-on-surface-variant text-[10px] uppercase tracking-widest mb-1">Hardware Setup</p>
+<p class="font-label text-sm text-on-surface">RTX 4090 / i9-14900K / 64GB</p>
+</div>
+<div>
+<p class="font-headline text-on-surface-variant text-[10px] uppercase tracking-widest mb-1">Peripherals</p>
+<p class="font-label text-sm text-on-surface">Logitech G Pro X Superlight, Wooting 60HE</p>
+</div>
+<div>
+<p class="font-headline text-on-surface-variant text-[10px] uppercase tracking-widest mb-1">Last Order</p>
+<p class="font-label text-sm text-on-surface flex justify-between">
+<span>G-Fuel Blue Ice (Can)</span>
+<span class="text-on-surface-variant">14:30</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

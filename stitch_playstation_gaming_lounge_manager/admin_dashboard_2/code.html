@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PS Lounge Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#c7aaff",
+                        "on-secondary-fixed-variant": "#553195",
+                        "on-secondary-fixed": "#260059",
+                        "on-primary-fixed": "#001f28",
+                        "primary": "#a4e6ff",
+                        "on-tertiary-fixed-variant": "#624000",
+                        "surface-tint": "#4cd6ff",
+                        "inverse-surface": "#e4e1e6",
+                        "on-primary": "#003543",
+                        "on-tertiary-fixed": "#291800",
+                        "tertiary-container": "#feb127",
+                        "secondary-fixed-dim": "#d3bbff",
+                        "surface-bright": "#39393c",
+                        "outline": "#859399",
+                        "surface": "#131316",
+                        "outline-variant": "#3c494e",
+                        "surface-variant": "#353438",
+                        "on-surface": "#e4e1e6",
+                        "surface-container": "#1f1f22",
+                        "secondary": "#d3bbff",
+                        "surface-container-lowest": "#0e0e11",
+                        "surface-dim": "#131316",
+                        "surface-container-high": "#2a2a2d",
+                        "secondary-container": "#573397",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#00677f",
+                        "primary-fixed-dim": "#4cd6ff",
+                        "surface-container-low": "#1b1b1e",
+                        "tertiary-fixed": "#ffddb1",
+                        "secondary-fixed": "#ebddff",
+                        "background": "#131316",
+                        "on-primary-container": "#00566a",
+                        "on-tertiary": "#442b00",
+                        "primary-container": "#00d1ff",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "on-secondary": "#3d147d",
+                        "tertiary": "#ffd59c",
+                        "inverse-on-surface": "#303033",
+                        "tertiary-fixed-dim": "#ffba49",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#353438",
+                        "on-surface-variant": "#bbc9cf",
+                        "on-primary-fixed-variant": "#004e60",
+                        "on-background": "#e4e1e6",
+                        "on-tertiary-container": "#6b4700",
+                        "primary-fixed": "#b7eaff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #131316; color: #e4e1e6; }
+        .glass-panel {
+            background-color: rgba(27, 27, 30, 0.6);
+            backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .neon-glow {
+            box-shadow: 0 0 30px rgba(164, 230, 255, 0.1);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 209, 255, 0.5);
+        }
+        .ambient-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(211, 187, 255, 0.15);
+            filter: blur(100px);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Custom Ring CSS to fake SVG progress without SVG */
+        .progress-ring-container {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .progress-ring-bg {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 4px solid #3c494e;
+        }
+        .progress-ring-value-blue {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: #00d1ff;
+            border-right-color: #00d1ff;
+            transform: rotate(45deg);
+        }
+        .progress-ring-value-orange {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: #feb127;
+            transform: rotate(-45deg);
+        }
+        .progress-ring-inner {
+            background: #1b1b1e;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body antialiased relative overflow-x-hidden pb-24 pt-20">
+<!-- Ambient Background Glows -->
+<div class="ambient-orb top-0 right-0 translate-x-1/4 -translate-y-1/4"></div>
+<div class="ambient-orb bottom-1/4 left-0 -translate-x-1/2" style="background: rgba(0, 209, 255, 0.1);"></div>
+<!-- TopAppBar -->
+<header class="bg-[#131316]/80 backdrop-blur-xl fixed top-0 w-full z-50 shadow-[0_4px_20px_rgba(0,209,255,0.1)] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-12 after:bg-[#00d1ff]">
+<div class="flex justify-between items-center px-6 py-4 w-full max-w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant/30">
+<img alt="Admin Avatar" class="w-full h-full object-cover" data-alt="close up of a professional young man looking forward, neutral lighting, soft background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4ocTiGVEqRHi0LjTjh1gHp3ycVsoasFPwJf65ZEUnqX9ELzPR20iITviRrdekqK-eMCGIMm6jSzKAwOQKrxsRuYxrSc81WddmxAxVV-EJd9HqKoPIzoqc38PNm50OOtpN01hphSsCraJdHwg5vTDqxcuxhW4JKL5GCgsqn8KEt3Hgcb0hUgxWLKlOc4M6jl4man0v0RSsPHvhj7kvawG1ryx-OKPs8MjtgPzP7EA5pkY1WRjiDkMQqSGGOQTz-ShlWVgKQWZtHYY"/>
+</div>
+<h1 class="font-['Space_Grotesk'] font-bold tracking-tighter uppercase text-sm text-[#a4e6ff]">KINETIC VAULT</h1>
+</div>
+<div class="text-xl font-black text-[#00d1ff] tracking-widest absolute left-1/2 -translate-x-1/2 hidden md:block">
+                VAULT
+            </div>
+<button class="text-[#859399] hover:text-[#a4e6ff] transition-all duration-300 hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="relative z-10 px-4 md:px-8 max-w-7xl mx-auto space-y-8">
+<!-- HUD Header -->
+<div class="pt-4 relative">
+<h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface">System Overview</h2>
+<p class="font-body text-sm text-on-surface-variant mt-1">Live metrics for PS Lounge.</p>
+<!-- HUD Loading Line -->
+<div class="absolute -bottom-4 left-0 w-full h-[1px] bg-surface-container-highest">
+<div class="h-[2px] w-[15%] bg-primary absolute left-[10%] top-0"></div>
+</div>
+</div>
+<!-- Metrics Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+<!-- Revenue Card -->
+<div class="glass-panel rounded-lg p-6 relative overflow-hidden group hover:bg-surface-container-high transition-colors duration-300 neon-glow">
+<!-- Subtle Gradient Background effect -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 flex flex-col justify-between h-full space-y-4">
+<div class="flex justify-between items-start">
+<span class="font-label text-xs uppercase tracking-[0.05em] text-on-surface-variant">Today's Revenue</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center border border-outline-variant/15">
+<span class="material-symbols-outlined text-primary text-sm">payments</span>
+</div>
+</div>
+<div>
+<div class="font-headline text-4xl font-bold text-on-surface tracking-tighter">$1,240</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[10px] text-[#4ade80]">arrow_upward</span>
+<span class="font-body text-xs text-[#4ade80]">12% vs Yesterday</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Sessions Card -->
+<div class="glass-panel rounded-lg p-6 relative overflow-hidden group hover:bg-surface-container-high transition-colors duration-300">
+<div class="relative z-10 flex flex-col justify-between h-full space-y-4">
+<div class="flex justify-between items-start">
+<span class="font-label text-xs uppercase tracking-[0.05em] text-on-surface-variant">Active Sessions</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center border border-outline-variant/15">
+<span class="material-symbols-outlined text-primary-container text-sm">videogame_asset</span>
+</div>
+</div>
+<div class="flex items-end justify-between">
+<div class="font-headline text-4xl font-bold text-on-surface tracking-tighter text-glow">7</div>
+<div class="flex gap-1">
+<!-- Neon Pips -->
+<div class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_#00d1ff]"></div>
+<div class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_#00d1ff]"></div>
+<div class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_#00d1ff]"></div>
+<div class="w-2 h-2 rounded-full bg-surface-variant"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Available Rooms Card -->
+<div class="glass-panel rounded-lg p-6 relative overflow-hidden group hover:bg-surface-container-high transition-colors duration-300">
+<div class="relative z-10 flex flex-col justify-between h-full space-y-4">
+<div class="flex justify-between items-start">
+<span class="font-label text-xs uppercase tracking-[0.05em] text-on-surface-variant">Available Rooms</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center border border-outline-variant/15">
+<span class="material-symbols-outlined text-tertiary text-sm">meeting_room</span>
+</div>
+</div>
+<div class="flex items-end justify-between">
+<div class="font-headline text-4xl font-bold text-on-surface tracking-tighter">3</div>
+<div class="font-body text-xs text-on-surface-variant">Out of 10 Total</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Ongoing Sessions Section -->
+<div class="mt-12 space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="font-headline text-xl font-bold text-on-surface tracking-tight">Ongoing Sessions</h3>
+<button class="font-label text-xs uppercase tracking-wider text-primary hover:text-primary-container transition-colors">View All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Session Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-5 border border-outline-variant/15 hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<div class="w-2 h-2 rounded-full bg-[#4ade80] shadow-[0_0_8px_rgba(74,222,128,0.5)]"></div>
+<span class="font-label text-xs uppercase tracking-wider text-on-surface">Room 01 - VIP</span>
+</div>
+<div class="font-body text-sm text-on-surface-variant">PS5 Pro • FIFA 24</div>
+</div>
+<!-- Progress Ring -->
+<div class="progress-ring-container">
+<div class="progress-ring-bg"></div>
+<div class="progress-ring-value-blue"></div>
+<div class="progress-ring-inner">
+<span class="font-headline text-xs font-bold text-primary">45m</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex -space-x-2">
+<img alt="User" class="w-6 h-6 rounded-full border border-surface-container-lowest" data-alt="headshot of young male gamer wearing headphones in dark room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQs7YuyQKZ4kpsPB0hnYEFrC4wF2rYlVX0WbPBV76tnwaW2c-HWQgtjinuq9KAlkK08e3SZhV-rp5lmcMDXilRPjRS_xmPkQorNzdkO56Ptsv4TKfEi0M8FmobyAxIv3HdFg7-Su9STnpzMBH9Y1DKdHAEeig7FF9QxtCYGm62CSgl9TPrSrhG8__5h-1_RcJ1jVG7zeEuQI8q5n4rRO0KoM3tMW8j4CsSC9RW-iz0QMLBZV8W9edfT7DmAu8wARnmM6c4o27ag60"/>
+<img alt="User" class="w-6 h-6 rounded-full border border-surface-container-lowest" data-alt="headshot of young female gamer with vibrant hair in neon lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuBpYStMKe_SLdOVe7zvVpiufZd3xrw3IyUvuVuLHxlFezSnzC16jV3COg9sVm8YN45WbwaHF7uIRRLT-6ux_Ybie_T6Rrth6Bf2Fq4oXXc2-WteYYr9ijeRsJAwqDsRvUcbEMT6he48VRPJ96vHz9pGvHzKYRbrQdxOcn3tfNhYCn36WiXUWUYXbT979-8SES9BI-3oCMnSUwc7xcU2pW6rTYHB1BJJZUTn4ykz1cjtpXMcdRMVLiwREfBv75_usNUErCcNoeNi0"/>
+</div>
+<button class="bg-gradient-to-br from-primary/10 to-primary-container/10 text-primary px-3 py-1.5 rounded-md font-label text-xs uppercase tracking-wider hover:from-primary/20 hover:to-primary-container/20 transition-all border border-primary/20">Manage</button>
+</div>
+</div>
+<!-- Session Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-5 border border-outline-variant/15 hover:border-tertiary-container/30 transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<div class="w-2 h-2 rounded-full bg-tertiary-container shadow-[0_0_8px_rgba(254,177,39,0.5)]"></div>
+<span class="font-label text-xs uppercase tracking-wider text-on-surface">Room 04 - Standard</span>
+</div>
+<div class="font-body text-sm text-on-surface-variant">PS5 • Call of Duty</div>
+</div>
+<!-- Progress Ring -->
+<div class="progress-ring-container">
+<div class="progress-ring-bg"></div>
+<div class="progress-ring-value-orange"></div>
+<div class="progress-ring-inner">
+<span class="font-headline text-xs font-bold text-tertiary-container">12m</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex -space-x-2">
+<img alt="User" class="w-6 h-6 rounded-full border border-surface-container-lowest" data-alt="close up profile of man looking concentrated with dramatic side lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX3RbNArSIu-oSnkzPIQMQdhQ4rtFfEnKtIAGNQor3EffwI5D9UWWroG4Dp-a0kk1puC2A-WtrXqpuOuxZyVbKbBDJ3RAPsStFJ3ls2g0EmoxRrhBLivSCp5MFYAzSInI42uEIvsiuvlPiiUIbb05y4hlfNFoT0rYtoOoX4ePtMP3PghIOScOJFQodgHEdCF-s4uST1_R_T0f0A2Itil0qerBHln3l_EnGCR1OrU45Nq2I9kveYAvhkwR14DqTdGzHJJNr--NW8fE"/>
+</div>
+<button class="bg-transparent text-on-surface-variant border border-outline-variant/50 px-3 py-1.5 rounded-md font-label text-xs uppercase tracking-wider hover:text-on-surface hover:border-outline-variant transition-all">Extend</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-[#1b1b1e]/90 backdrop-blur-lg fixed bottom-0 w-full z-50 rounded-t-2xl shadow-[0_-8px_30px_rgba(0,0,0,0.5)] md:hidden">
+<div class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-4 pb-safe">
+<!-- Active Item: DASHBOARD -->
+<button class="flex flex-col items-center justify-center text-[#00d1ff] drop-shadow-[0_0_8px_rgba(0,209,255,0.5)] scale-110 active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1 text-xl" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-['Inter'] font-medium text-[10px] tracking-[0.05em] uppercase">DASHBOARD</span>
+</button>
+<!-- Inactive Item: ROOMS -->
+<button class="flex flex-col items-center justify-center text-[#859399] opacity-70 hover:text-[#a4e6ff] hover:opacity-100 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1 text-xl">videogame_asset</span>
+<span class="font-['Inter'] font-medium text-[10px] tracking-[0.05em] uppercase">ROOMS</span>
+</button>
+<!-- Inactive Item: ORDERS -->
+<button class="flex flex-col items-center justify-center text-[#859399] opacity-70 hover:text-[#a4e6ff] hover:opacity-100 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1 text-xl">receipt_long</span>
+<span class="font-['Inter'] font-medium text-[10px] tracking-[0.05em] uppercase">ORDERS</span>
+</button>
+<!-- Inactive Item: REPORTS -->
+<button class="flex flex-col items-center justify-center text-[#859399] opacity-70 hover:text-[#a4e6ff] hover:opacity-100 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1 text-xl">analytics</span>
+<span class="font-['Inter'] font-medium text-[10px] tracking-[0.05em] uppercase">REPORTS</span>
+</button>
+</div>
+</nav>
+</body></html>
