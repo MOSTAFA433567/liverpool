@@ -1,5 +1,6 @@
 import { HashRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { useAuthStore } from './store/useAuthStore';
 import { useLoungeStore } from './store/useLoungeStore';
 import { Layout } from './components/layout/Layout';
@@ -55,6 +56,7 @@ export default function App() {
   return (
     <>
       <ToastContainer />
+      <Analytics />
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
