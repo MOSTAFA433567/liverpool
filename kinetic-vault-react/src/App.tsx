@@ -56,44 +56,44 @@ export default function App() {
     <>
       <ToastContainer />
       <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        
-        {/* Customer Routes */}
-        <Route path="/customer" element={
-          <CustomerRoute>
-            <CustomerDashboard />
-          </CustomerRoute>
-        } />
-        <Route path="/customer/book" element={
-          <CustomerRoute>
-            <BookingFlow />
-          </CustomerRoute>
-        } />
-        <Route path="/customer/checkout/:bookingId" element={
-          <CustomerRoute>
-            <Checkout />
-          </CustomerRoute>
-        } />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
 
-        {/* Admin Routes */}
-        <Route path="/admin" element={
-          <AdminRoute>
-            <Layout />
-          </AdminRoute>
-        }>
-          <Route index element={<Dashboard />} />
-          <Route path="session/:sessionId" element={<SessionManager />} />
-          <Route path="rooms" element={<RoomsList />} />
-          <Route path="bookings" element={<Bookings />} />
-          <Route path="pos" element={<POS />} />
-          <Route path="checkout/:sessionId" element={<Invoice />} />
-          <Route path="reports" element={<Reports />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-      </Routes>
-    </Router>
+          {/* Customer Routes */}
+          <Route path="/customer" element={
+            <CustomerRoute>
+              <CustomerDashboard />
+            </CustomerRoute>
+          } />
+          <Route path="/customer/book" element={
+            <CustomerRoute>
+              <BookingFlow />
+            </CustomerRoute>
+          } />
+          <Route path="/customer/checkout/:bookingId" element={
+            <CustomerRoute>
+              <Checkout />
+            </CustomerRoute>
+          } />
+
+          {/* Admin Routes */}
+          <Route path="/admin" element={
+            <AdminRoute>
+              <Layout />
+            </AdminRoute>
+          }>
+            <Route index element={<Dashboard />} />
+            <Route path="session/:sessionId" element={<SessionManager />} />
+            <Route path="rooms" element={<RoomsList />} />
+            <Route path="bookings" element={<Bookings />} />
+            <Route path="pos" element={<POS />} />
+            <Route path="checkout/:sessionId" element={<Invoice />} />
+            <Route path="reports" element={<Reports />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+        </Routes>
+      </Router>
     </>
   );
 }

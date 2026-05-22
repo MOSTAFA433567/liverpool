@@ -1,73 +1,78 @@
-# React + TypeScript + Vite
+# Liverpool Lounge — PlayStation Gaming Lounge Manager 🎮
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-featured gaming lounge management system built with **React + TypeScript + Vite + Firebase**.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 🎮 Room booking & session management
+- 👤 Dual-role authentication (Admin / Customer)
+- 🛒 POS system with food & drinks ordering
+- 📊 Revenue dashboard & analytics
+- 🌍 Multi-language support (Arabic / English)
+- 🔥 Real-time data with Firebase Firestore
 
-## React Compiler
+## 🚀 Getting Started (Local Development)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Clone the repository
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+cd YOUR_REPO_NAME
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
+```bash
+npm install
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 3. Set up environment variables
+```bash
+# Copy the example file
+cp .env.example .env
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Edit .env and fill in your Firebase & Paymob credentials
+```
+
+### 4. Run the dev server
+```bash
+npm run dev
+```
+
+App will be available at `http://localhost:5173`
+
+## 🌐 Deploy to Vercel
+
+1. Push this repository to GitHub
+2. Go to [vercel.com](https://vercel.com) and import the repository
+3. Add the environment variables from `.env.example` in the Vercel dashboard:
+   - `Settings → Environment Variables`
+4. Deploy! Vercel will automatically rebuild on every push.
+
+## 🔧 Environment Variables
+
+See `.env.example` for all required variables. You'll need:
+- **Firebase** project credentials (free tier works fine)
+- **Paymob** API keys (optional, for payment processing)
+
+## 🛠️ Tech Stack
+
+| Tool | Purpose |
+|------|---------|
+| React 19 + TypeScript | UI framework |
+| Vite 8 | Build tool |
+| Tailwind CSS 4 | Styling |
+| Firebase | Auth + Firestore database |
+| Zustand | State management |
+| React Router 7 | Client-side routing |
+| Recharts | Analytics charts |
+
+## 📁 Project Structure
+
+```
+src/
+├── components/     # Reusable UI components
+├── pages/          # Route-level pages (Admin, Customer)
+├── services/       # Firebase/Firestore service layer
+├── store/          # Zustand state stores
+├── i18n/           # Translation files (AR/EN)
+└── types/          # TypeScript type definitions
 ```
